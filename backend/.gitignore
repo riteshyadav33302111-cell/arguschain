@@ -3,3 +3,4 @@ node_modules/
 dist/
 storage/
 *.db
+argus.db-journal

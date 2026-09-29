@@ -9,6 +9,12 @@ export default defineConfig({
   server: {
     port: 5173,
     strictPort: true,
+    host: true,
+    // Deployment: allow the public sandbox hostname (and any host set via env)
+    // so the dev server can be reached through the reverse proxy.
+    allowedHosts: process.env.VITE_ALLOWED_HOSTS
+      ? process.env.VITE_ALLOWED_HOSTS.split(",")
+      : true,
     proxy: {
       "/api": { target: "http://localhost:3000", changeOrigin: true, rewrite: (p) => p.replace(/^\/api/, "") },
     },
